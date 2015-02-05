@@ -21,3 +21,10 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  ******************************************************************************/
+
+#ifndef __FOO_H__
+#define __FOO_H__
+
+#include <Foo/Hello.h>
+
+#endif /* __FOO_H__ */

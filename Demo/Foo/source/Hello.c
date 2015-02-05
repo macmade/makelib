@@ -21,3 +21,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  ******************************************************************************/
+
+#include <Foo.h>
+#include <stdio.h>
+
+void Foo_Hello( void )
+{
+    printf( "hello, world\n" );
+}
