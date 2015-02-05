@@ -33,34 +33,38 @@ include ../Common.mk
 #-------------------------------------------------------------------------------
 
 # Procuct name
-PRODUCT             := Foo
-PRODUCT_LIB         := lib$(PRODUCT)
-PRODUCT_DYLIB       := lib$(PRODUCT)
-PRODUCT_FRAMEWORK   := $(PRODUCT)
-PRODUCT_IOS_LIB     := lib$(PRODUCT)-iOS
+PRODUCT           := Foo
+PRODUCT_LIB       := lib$(PRODUCT)
+PRODUCT_DYLIB     := lib$(PRODUCT)
+PRODUCT_FRAMEWORK := $(PRODUCT)
+PRODUCT_IOS_LIB   := lib$(PRODUCT)-iOS
 
 # Product paths
-PREFIX_DYLIB        := /usr/local/lib/
-PREFIX_FRAMEWORK    := /Library/Frameworks/
+PREFIX_DYLIB     := /usr/local/lib/
+PREFIX_FRAMEWORK := /Library/Frameworks/
 
 #-------------------------------------------------------------------------------
 # Paths
 #-------------------------------------------------------------------------------
 
 # Source directories
-DIR_INC     := $(PRODUCT)/include/
-DIR_SRC     := $(PRODUCT)/source/
-DIR_RES     := $(PRODUCT)/
+DIR_INC := $(PRODUCT)/include/
+DIR_SRC := $(PRODUCT)/source/
+
+#-------------------------------------------------------------------------------
+# File suffixes
+#-------------------------------------------------------------------------------
+
+EXT_C := .c
+EXT_H := .h
+EXT_O := .o
 
 #-------------------------------------------------------------------------------
 # Files
 #-------------------------------------------------------------------------------
 
 # Files to compile
-FILES_C         :=  $(call GET_C_FILES, $(DIR_SRC))
-
-# Unit-test files
-FILES_TESTS     :=  $(call GET_C_FILES, $(DIR_TESTS))
+FILES := $(call GET_C_FILES, $(DIR_SRC))
 
 #-------------------------------------------------------------------------------
 # Configuration
@@ -70,7 +74,7 @@ CC          := clang
 LIBS        := 
 FLAGS_OPTIM := Os
 FLAGS_WARN  := -Werror -Wall
-FLAGS_STD   := c11
+FLAGS_STD   := c99
 FLAGS_OTHER := -fno-strict-aliasing
 
 #-------------------------------------------------------------------------------

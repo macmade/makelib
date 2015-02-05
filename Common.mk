@@ -92,14 +92,6 @@ DIR_BUILD_PRODUCTS  := $(DIR_BUILD)Products/
 DIR_BUILD_TEMP      := $(DIR_BUILD)Intermediates/
 DIR_BUILD_TESTS     := $(DIR)Build/Tests/
 
-#-------------------------------------------------------------------------------
-# File suffixes
-#-------------------------------------------------------------------------------
-
-EXT_C   := .cpp
-EXT_H   := .h
-EXT_O   := .o
-
 # Erases implicit rules
 .SUFFIXES:
 
