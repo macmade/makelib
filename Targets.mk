@@ -187,6 +187,7 @@ $(DIR_BUILD_PRODUCTS)%$(EXT_FRAMEWORK): $$(shell mkdir -p $$(dir $$@)) $(DIR_BUI
 	@echo -e $(call PRINT,$(notdir $@),$(_ARCH),Linking the $(_ARCH) binary)
 	@$(CC) $(LIBS) $(CC_FLAGS_FRAMEWORK_$(_ARCH)) $(CC_FLAGS_$(_ARCH)) -o $@/Versions/A/$(notdir $(basename $@)) $<
 
+# Project object file target
 $(DIR_BUILD_TEMP)%$(PRODUCT)$(EXT_O): _ARCH        = $(subst /,,$*)
 $(DIR_BUILD_TEMP)%$(PRODUCT)$(EXT_O): _FILES       = $(foreach _FILE,$(FILES),$(patsubst $(DIR_SRC)%,%,$(_FILE)))
 $(DIR_BUILD_TEMP)%$(PRODUCT)$(EXT_O): _FILES_OBJ   = $(addprefix $*,$(patsubst %$(EXT_C),%$(EXT_C)$(EXT_O),$(_FILES)))
@@ -196,6 +197,7 @@ $(DIR_BUILD_TEMP)%$(PRODUCT)$(EXT_O): $$(shell mkdir -p $$(dir $$@)) $$(_FILES_B
 	@echo -e $(call PRINT,Linking object files,$(_ARCH),$(notdir $@))
 	@$(LD) -r $(LD_FLAGS_$(_ARCH)) $(_FILES_BUILD) -o $@
 
+# Object file target
 $(DIR_BUILD_TEMP)%$(EXT_C)$(EXT_O): _ARCH      = $(firstword $(subst /, ,$(subst $(DIR_BUILD_TEMP),,$@)))
 $(DIR_BUILD_TEMP)%$(EXT_C)$(EXT_O): _FILE      = $(subst $(_ARCH)/,,$*)$(EXT_C)
 $(DIR_BUILD_TEMP)%$(EXT_C)$(EXT_O): $$(shell mkdir -p $$(dir $$@)) $$(_FILE)
