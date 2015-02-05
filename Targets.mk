@@ -27,8 +27,8 @@
 #-------------------------------------------------------------------------------
 
 # Define the search paths for source files
-vpath %$(EXT_C) $(DIR_SRC)
 vpath %$(EXT_C) $(DIR_TESTS)
+vpath %$(EXT_C) $(DIR_SRC)
 
 #-------------------------------------------------------------------------------
 # Built-in targets
