@@ -35,10 +35,9 @@ EXT_FRAMEWORK   := .framework
 # Products and architectures to build
 #-------------------------------------------------------------------------------
 
-PRODUCTS = $(PRODUCT_LIB)$(EXT_LIB)|i386|x86_64             \
-           $(PRODUCT_DYLIB)$(EXT_DYLIB)|i386|x86_64         \
-           $(PRODUCT_FRAMEWORK)$(EXT_FRAMEWORK)|i386|x86_64 \
-           $(PRODUCT_IOS_LIB)$(EXT_LIB)|armv7|armv7s|arm64
+PRODUCTS = $(PRODUCT_LIB)$(EXT_LIB)|i386|x86_64|armv7|armv7s|arm64 \
+           $(PRODUCT_DYLIB)$(EXT_DYLIB)|i386|x86_64                \
+           $(PRODUCT_FRAMEWORK)$(EXT_FRAMEWORK)|i386|x86_64        \
 
 #-------------------------------------------------------------------------------
 # Tools

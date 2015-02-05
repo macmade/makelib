@@ -22,68 +22,28 @@
 # THE SOFTWARE.
 #-------------------------------------------------------------------------------
 
-#-------------------------------------------------------------------------------
-# Includes
-#-------------------------------------------------------------------------------
-
 include ../Common.mk
 
-#-------------------------------------------------------------------------------
-# Products
-#-------------------------------------------------------------------------------
-
-# Procuct name
 PRODUCT           := Foo
-PRODUCT_LIB       := lib$(PRODUCT)
-PRODUCT_DYLIB     := lib$(PRODUCT)
-PRODUCT_FRAMEWORK := $(PRODUCT)
-PRODUCT_IOS_LIB   := lib$(PRODUCT)-iOS
-
-# Product paths
+PRODUCT_LIB       := libFoo
+PRODUCT_DYLIB     := libFoo
+PRODUCT_FRAMEWORK := Foo
 PREFIX_DYLIB      := /usr/local/lib/
 PREFIX_FRAMEWORK  := /Library/Frameworks/
-
-#-------------------------------------------------------------------------------
-# Paths
-#-------------------------------------------------------------------------------
-
-# Source directories
-DIR_INC   := $(PRODUCT)/include/
-DIR_SRC   := $(PRODUCT)/source/
-DIR_RES   := $(PRODUCT)/
-DIR_TESTS := Unit-Tests/
-
-#-------------------------------------------------------------------------------
-# File suffixes
-#-------------------------------------------------------------------------------
-
-EXT_C := .c
-EXT_H := .h
-EXT_O := .o
-
-#-------------------------------------------------------------------------------
-# Files
-#-------------------------------------------------------------------------------
-
-# Files to compile
-FILES       := $(call GET_C_FILES, $(DIR_SRC))
-
-# Unit-test files
-FILES_TESTS :=  $(call GET_C_FILES, $(DIR_TESTS))
-
-#-------------------------------------------------------------------------------
-# Configuration
-#-------------------------------------------------------------------------------
-
-CC          := clang
-LIBS        := 
-FLAGS_OPTIM := Os
-FLAGS_WARN  := -Werror -Wall
-FLAGS_STD   := c99
-FLAGS_OTHER := -fno-strict-aliasing
-
-#-------------------------------------------------------------------------------
-# Includes
-#-------------------------------------------------------------------------------
+DIR_INC           := Foo/include/
+DIR_SRC           := Foo/source/
+DIR_RES           := Foo/
+DIR_TESTS         := Foo/tests
+EXT_C             := .c
+EXT_H             := .h
+EXT_O             := .o
+FILES             := $(call GET_C_FILES, $(DIR_SRC))
+FILES_TESTS       := $(call GET_C_FILES, $(DIR_TESTS))
+CC                := clang
+LIBS              := 
+FLAGS_OPTIM       := Os
+FLAGS_WARN        := -Werror -Wall
+FLAGS_STD         := c99
+FLAGS_OTHER       := 
 
 include ../Targets.mk
