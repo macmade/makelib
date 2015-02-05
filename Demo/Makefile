@@ -40,16 +40,18 @@ PRODUCT_FRAMEWORK := $(PRODUCT)
 PRODUCT_IOS_LIB   := lib$(PRODUCT)-iOS
 
 # Product paths
-PREFIX_DYLIB     := /usr/local/lib/
-PREFIX_FRAMEWORK := /Library/Frameworks/
+PREFIX_DYLIB      := /usr/local/lib/
+PREFIX_FRAMEWORK  := /Library/Frameworks/
 
 #-------------------------------------------------------------------------------
 # Paths
 #-------------------------------------------------------------------------------
 
 # Source directories
-DIR_INC := $(PRODUCT)/include/
-DIR_SRC := $(PRODUCT)/source/
+DIR_INC   := $(PRODUCT)/include/
+DIR_SRC   := $(PRODUCT)/source/
+DIR_RES   := $(PRODUCT)/
+DIR_TESTS := Unit-Tests/
 
 #-------------------------------------------------------------------------------
 # File suffixes
@@ -64,7 +66,10 @@ EXT_O := .o
 #-------------------------------------------------------------------------------
 
 # Files to compile
-FILES := $(call GET_C_FILES, $(DIR_SRC))
+FILES       := $(call GET_C_FILES, $(DIR_SRC))
+
+# Unit-test files
+FILES_TESTS :=  $(call GET_C_FILES, $(DIR_TESTS))
 
 #-------------------------------------------------------------------------------
 # Configuration
