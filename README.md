@@ -10,7 +10,158 @@ makelib
 About
 -----
 
-**makelib** is a generic cross-platform makefile for building C/C++/Objective-C libraries.
+makelib is a generic cross-platform makefile for building C/C++/Objective-C libraries.  
+Its purpose is to ease the build process of libraries for cross-platform projects.
+
+### Available targets by system
+
+Building on **OSX**, the following files will be produced:
+
+  - **Static library** (`.a`): `i386` `x86_64` `armv7` `armv7s` `arm64`
+  - **Dynamic library** (`.dylib`): `i386` `x86_64`
+  - **Mac framework** (`.framework`): `i386` `x86_64`
+
+On **Linux**:
+
+  - **Static library** (`.a`): host architecture
+  - **Dynamic library** (`.dylib`): host architecture
+
+Note that on OS X builds, ARM libraries are obviously targeted for iOS.
+
+Configuration
+-------------
+
+### Recommended project structure
+
+You may use `makelib` as a submodule of your project.
+
+You'll need a **build** directory with a specific structure, a directory with **sources**, a directory with **includes** and finally a **Makefile** with configuration options.
+
+Here's an example project structure:
+
+    Build/                    (Build directory)
+        Debug/                (Files produced by "debug" builds)
+            Intermediates/    (Debug intermediate object files by architecture)
+            Products/         (Debug products by architecture)
+        Release/              (Files produced by "release" builds)
+            Intermediates/    (Release intermediate object files by architecture)
+            Products/         (Release products by architecture)
+    Makefile                  (Makefile with makelib configuration values)
+    makelib/                  (makelib submodule)
+    MyProject/                (Project directory)
+        include/              (Directory with include files)
+        Info.plist            (Info.plist file - Required for building a Mac framework)
+        source/               (Directory with source files)
+        tests/                (Directory with unit test files, if any)
+
+### Configuration Makefile
+
+A makefile containing configuration values for makelib is required.  
+Assuming the previous project structure and a C++ project, this makefile may look like:
+
+    include makelib/Common.mk
+    
+    PRODUCT           := MyProject
+    PRODUCT_LIB       := libMyProject
+    PRODUCT_DYLIB     := libMyProject
+    PRODUCT_FRAMEWORK := MyProject
+    PREFIX_DYLIB      := /usr/local/lib/
+    PREFIX_FRAMEWORK  := /Library/Frameworks/
+    DIR_INC           := MyProject/include/
+    DIR_SRC           := MyProject/source/
+    DIR_RES           := MyProject/
+    DIR_TESTS         := MyProject/tests
+    EXT_C             := .cpp
+    EXT_H             := .h
+    FILES             := $(call GET_C_FILES, $(DIR_SRC))
+    FILES_TESTS       := $(call GET_C_FILES, $(DIR_TESTS))
+    CC                := clang
+    LIBS              := 
+    FLAGS_OPTIM       := -Os
+    FLAGS_WARN        := -Wall -Werror
+    FLAGS_STD         := c++11
+    FLAGS_OTHER       := 
+    
+    include makelib/Targets.mk 
+
+Please read the section below for details about each configuration value.
+
+#### Configuration values
+
+**PRODUCT**  
+The name of your product/project.
+
+**PRODUCT_LIB**  
+The name for the generated static library.  
+Note: always use a `lib` prefix.
+
+**PRODUCT_DYLIB**  
+The name for the generated dynamic library.  
+Note: always use a `lib` prefix.
+
+**PRODUCT_FRAMEWORK**  
+The name for the generated Mac framework package.
+
+**PREFIX_DYLIB**  
+The directory in which the dynamic library is intended to be installed.
+
+**PREFIX_FRAMEWORK**  
+The directory in which the Mac framework is intended to be installed.
+
+**DIR_INC**  
+The directory with include files.
+
+**DIR_SRC**  
+The directory with source files.
+
+**DIR_RES**  
+The directory with resource files, link `Info.plist`.
+
+**DIR_TESTS**  
+The directory with unit test files, if any.
+
+**EXT_C**  
+The file extension for your source files (`.c`, `.cpp`, `.m`, etc).
+
+**EXT_H**  
+The file extension for your header files (`.h`, `.hpp`, etc).
+
+**FILES**  
+The project files to compile.  
+Note that you can use the `GET_C_FILES` function for convenience:
+
+    FILES := $(call GET_C_FILES, some/dir/) $(call GET_C_FILES, some/other/dir/)
+
+**FILES_TESTS**  
+The unit test files to compile.
+Note that you can use the `GET_C_FILES` function for convenience:
+
+    FILES := $(call GET_C_FILES, some/dir/) $(call GET_C_FILES, some/other/dir/)
+
+**CC**  
+The compiler to use (`clang`, `gcc`, `g++`, etc).
+
+**LIBS**  
+Any libraries to link with when building the project.  
+Eg: `-lpthread -lz`
+
+**FLAGS_OPTIM**  
+Optimisation flags for the compiler (`Os`, `O3`, etc).
+
+**FLAGS_WARN**  
+Warning flags for the compiler.  
+Eg: `-Wall -Werror -Wpedantic`
+
+**FLAGS_STD**  
+The language standard to use (`c99`, `c++11`, etc).
+
+**FLAGS_OTHER**  
+Any other flags to pass to the compiler.
+
+Demo / Example
+--------------
+
+You'll find a working example C project in the `Demo` subdirectory.
 
 License
 -------
