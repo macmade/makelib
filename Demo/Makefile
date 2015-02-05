@@ -36,7 +36,6 @@ DIR_RES           := Foo/
 DIR_TESTS         := 
 EXT_C             := .c
 EXT_H             := .h
-EXT_O             := .o
 FILES             := $(call GET_C_FILES, $(DIR_SRC))
 FILES_TESTS       := $(call GET_C_FILES, $(DIR_TESTS))
 CC                := clang
