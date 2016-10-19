@@ -71,15 +71,19 @@ Assuming the previous project structure and a C++ project, this makefile may loo
     DIR_SRC           := MyProject/source/
     DIR_RES           := MyProject/
     DIR_TESTS         := MyProject/tests
-    EXT_C             := .cpp
+    EXT_C             := .c
+    EXT_CPP           := .cpp
+    EXT_M             := .m
+    EXT_MM            := .mm
     EXT_H             := .h
-    FILES             := $(call GET_C_FILES, $(DIR_SRC))
-    FILES_TESTS       := $(call GET_C_FILES, $(DIR_TESTS))
+    FILES             := $(call GET_CPP_FILES, $(DIR_SRC))
+    FILES_TESTS       := $(call GET_CPP_FILES, $(DIR_TESTS))
     CC                := clang
     LIBS              := 
     FLAGS_OPTIM       := -Os
     FLAGS_WARN        := -Wall -Werror
-    FLAGS_STD         := c++11
+    FLAGS_STD_C       := c99
+    FLAGS_STD_CPP     := c++11
     FLAGS_OTHER       := 
     
     include makelib/Targets.mk 
@@ -121,7 +125,16 @@ The directory with resource files, link `Info.plist`.
 The directory with unit test files, if any.
 
 **EXT_C**  
-The file extension for your source files (`.c`, `.cpp`, `.m`, etc).
+The file extension for your C source files (typically `.c`).
+
+**EXT_CPP**  
+The file extension for your C++ source files (typically `.cpp`).
+
+**EXT_M**  
+The file extension for your Objective-C source files (typically `.m`).
+
+**EXT_MM**  
+The file extension for your Objective-C++ source files (typically `.mm`).
 
 **EXT_H**  
 The file extension for your header files (`.h`, `.hpp`, etc).
@@ -143,7 +156,7 @@ The compiler to use (`clang`, `gcc`, `g++`, etc).
 
 **LIBS**  
 Any libraries to link with when building the project.  
-Eg: `-lpthread -lz`
+Eg: `-lpthread -lz -lc++`
 
 **FLAGS_OPTIM**  
 Optimisation flags for the compiler (`Os`, `O3`, etc).
@@ -152,8 +165,11 @@ Optimisation flags for the compiler (`Os`, `O3`, etc).
 Warning flags for the compiler.  
 Eg: `-Wall -Werror -Wpedantic`
 
-**FLAGS_STD**  
-The language standard to use (`c99`, `c++11`, etc).
+**FLAGS_STD_C**  
+The C language standard to use (`c99`, `c11`, etc).
+
+**FLAGS_STD_CPP**  
+The C++ language standard to use (`c++11`, `c++14`, etc).
 
 **FLAGS_OTHER**  
 Any other flags to pass to the compiler.

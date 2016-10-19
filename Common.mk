@@ -45,7 +45,7 @@ HOST_ARCH := $(shell uname -m)
 
 MAKE    := make -s
 SHELL   := /bin/bash
-_CC      = $(CC) $(FLAGS_WARN) -fPIC -$(FLAGS_OPTIM) -std=$(FLAGS_STD) $(FLAGS_OTHER) -I$(DIR_INC)
+_CC      = $(CC) $(FLAGS_WARN) -fPIC -$(FLAGS_OPTIM) $(FLAGS_OTHER) -I$(DIR_INC)
 
 # C compiler - Debug mode
 ifneq ($(findstring 1,$(DEBUG)),)
@@ -117,6 +117,21 @@ COLOR_CYAN      := "\x1b[36;01m"
 # 
 # @1:   The directory with the source files
 GET_C_FILES = $(foreach _DIR,$(1), $(wildcard $(_DIR)*$(EXT_C)))
+
+# Gets every C++ file in a specific source directory
+# 
+# @1:   The directory with the source files
+GET_CPP_FILES = $(foreach _DIR,$(1), $(wildcard $(_DIR)*$(EXT_CPP)))
+
+# Gets every Objective-C file in a specific source directory
+# 
+# @1:   The directory with the source files
+GET_M_FILES = $(foreach _DIR,$(1), $(wildcard $(_DIR)*$(EXT_M)))
+
+# Gets every Objective-C++ file in a specific source directory
+# 
+# @1:   The directory with the source files
+GET_MM_FILES = $(foreach _DIR,$(1), $(wildcard $(_DIR)*$(EXT_MM)))
 
 # Gets an SDK value from Xcode
 # 
