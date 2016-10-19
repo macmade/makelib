@@ -30,9 +30,11 @@
 vpath %$(EXT_C)     $(DIR_TESTS)
 vpath %$(EXT_CPP)   $(DIR_TESTS)
 vpath %$(EXT_M)     $(DIR_TESTS)
+vpath %$(EXT_MM)    $(DIR_TESTS)
 vpath %$(EXT_C)     $(DIR_SRC)
 vpath %$(EXT_CPP)   $(DIR_SRC)
 vpath %$(EXT_M)     $(DIR_SRC)
+vpath %$(EXT_MM)    $(DIR_SRC)
 
 #-------------------------------------------------------------------------------
 # Built-in targets
@@ -49,7 +51,7 @@ vpath %$(EXT_M)     $(DIR_SRC)
         _test
 
 # Declaration for precious targets, to avoid cleaning of intermediate files
-.PRECIOUS: $(DIR_BUILD_TEMP)%$(PRODUCT)$(EXT_O) $(DIR_BUILD_TEMP)%$(EXT_C)$(EXT_O) $(DIR_BUILD_TEMP)%$(EXT_CPP)$(EXT_O) $(DIR_BUILD_TEMP)%$(EXT_M)$(EXT_O)
+.PRECIOUS: $(DIR_BUILD_TEMP)%$(PRODUCT)$(EXT_O) $(DIR_BUILD_TEMP)%$(EXT_C)$(EXT_O) $(DIR_BUILD_TEMP)%$(EXT_CPP)$(EXT_O) $(DIR_BUILD_TEMP)%$(EXT_M)$(EXT_O) $(DIR_BUILD_TEMP)%$(EXT_MM)$(EXT_O)
 
 #-------------------------------------------------------------------------------
 # Common targets
@@ -194,7 +196,7 @@ $(DIR_BUILD_PRODUCTS)%$(EXT_FRAMEWORK): $$(shell mkdir -p $$(dir $$@)) $(DIR_BUI
 # Project object file target
 $(DIR_BUILD_TEMP)%$(PRODUCT)$(EXT_O): _ARCH        = $(subst /,,$*)
 $(DIR_BUILD_TEMP)%$(PRODUCT)$(EXT_O): _FILES       = $(foreach _FILE,$(FILES),$(patsubst $(DIR_SRC)%,%,$(_FILE)))
-$(DIR_BUILD_TEMP)%$(PRODUCT)$(EXT_O): _FILES_OBJ   = $(addprefix $*,$(patsubst %$(EXT_C),%$(EXT_C)$(EXT_O),$(patsubst %$(EXT_CPP),%$(EXT_CPP)$(EXT_O),$(patsubst %$(EXT_M),%$(EXT_CPP)$(EXT_O),$(patsubst %$(EXT_MM),%$(EXT_CPP)$(EXT_O),$(_FILES))))))
+$(DIR_BUILD_TEMP)%$(PRODUCT)$(EXT_O): _FILES_OBJ   = $(addprefix $*,$(patsubst %$(EXT_C),%$(EXT_C)$(EXT_O),$(patsubst %$(EXT_CPP),%$(EXT_CPP)$(EXT_O),$(patsubst %$(EXT_M),%$(EXT_M)$(EXT_O),$(patsubst %$(EXT_MM),%$(EXT_MM)$(EXT_O),$(_FILES))))))
 $(DIR_BUILD_TEMP)%$(PRODUCT)$(EXT_O): _FILES_BUILD = $(addprefix $(DIR_BUILD_TEMP),$(_FILES_OBJ))
 $(DIR_BUILD_TEMP)%$(PRODUCT)$(EXT_O): $$(shell mkdir -p $$(dir $$@)) $$(_FILES_BUILD)
 	
