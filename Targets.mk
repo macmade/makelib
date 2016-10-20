@@ -209,7 +209,7 @@ $(DIR_BUILD_TEMP)%$(EXT_C)$(EXT_O): _FILE      = $(subst $(_ARCH)/,,$*)$(EXT_C)
 $(DIR_BUILD_TEMP)%$(EXT_C)$(EXT_O): $$(shell mkdir -p $$(dir $$@)) $$(_FILE)
 	
 	@echo -e $(call PRINT_FILE,"Compiling C file",$(_ARCH),$(_FILE))
-	@$(_CC) $(CC_FLAGS_$(_ARCH)) -std=$(FLAGS_STD_C) -o $@ -c $(addprefix $(DIR_SRC),$(_FILE))
+	@$(_CC) $(CC_FLAGS_$(_ARCH)) -std=$(FLAGS_STD_C) $(FLAGS_C) -o $@ -c $(addprefix $(DIR_SRC),$(_FILE))
 
 # Object file target / C++
 $(DIR_BUILD_TEMP)%$(EXT_CPP)$(EXT_O): _ARCH      = $(firstword $(subst /, ,$(subst $(DIR_BUILD_TEMP),,$@)))
@@ -217,7 +217,7 @@ $(DIR_BUILD_TEMP)%$(EXT_CPP)$(EXT_O): _FILE      = $(subst $(_ARCH)/,,$*)$(EXT_C
 $(DIR_BUILD_TEMP)%$(EXT_CPP)$(EXT_O): $$(shell mkdir -p $$(dir $$@)) $$(_FILE)
 	
 	@echo -e $(call PRINT_FILE,"Compiling C++ file",$(_ARCH),$(_FILE))
-	@$(_CC) $(CC_FLAGS_$(_ARCH)) -std=$(FLAGS_STD_CPP) -o $@ -c $(addprefix $(DIR_SRC),$(_FILE))
+	@$(_CC) $(CC_FLAGS_$(_ARCH)) -std=$(FLAGS_STD_CPP) $(FLAGS_CPP) -o $@ -c $(addprefix $(DIR_SRC),$(_FILE))
 
 # Object file target / Objective-C
 $(DIR_BUILD_TEMP)%$(EXT_M)$(EXT_O): _ARCH      = $(firstword $(subst /, ,$(subst $(DIR_BUILD_TEMP),,$@)))
@@ -225,7 +225,7 @@ $(DIR_BUILD_TEMP)%$(EXT_M)$(EXT_O): _FILE      = $(subst $(_ARCH)/,,$*)$(EXT_M)
 $(DIR_BUILD_TEMP)%$(EXT_M)$(EXT_O): $$(shell mkdir -p $$(dir $$@)) $$(_FILE)
 	
 	@echo -e $(call PRINT_FILE,"Compiling Objective-C file",$(_ARCH),$(_FILE))
-	@$(_CC) $(CC_FLAGS_$(_ARCH)) -std=$(FLAGS_STD_C) -o $@ -c $(addprefix $(DIR_SRC),$(_FILE))
+	@$(_CC) $(CC_FLAGS_$(_ARCH)) -std=$(FLAGS_STD_C) $(FLAGS_M) -o $@ -c $(addprefix $(DIR_SRC),$(_FILE))
 
 # Object file target / Objective-C++
 $(DIR_BUILD_TEMP)%$(EXT_MM)$(EXT_O): _ARCH      = $(firstword $(subst /, ,$(subst $(DIR_BUILD_TEMP),,$@)))
@@ -233,4 +233,4 @@ $(DIR_BUILD_TEMP)%$(EXT_MM)$(EXT_O): _FILE      = $(subst $(_ARCH)/,,$*)$(EXT_MM
 $(DIR_BUILD_TEMP)%$(EXT_MM)$(EXT_O): $$(shell mkdir -p $$(dir $$@)) $$(_FILE)
 	
 	@echo -e $(call PRINT_FILE,"Compiling Objective-C file",$(_ARCH),$(_FILE))
-	@$(_CC) $(CC_FLAGS_$(_ARCH)) -std=$(FLAGS_STD_CPP) -o $@ -c $(addprefix $(DIR_SRC),$(_FILE))
+	@$(_CC) $(CC_FLAGS_$(_ARCH)) -std=$(FLAGS_STD_CPP) $(FLAGS_MM) -o $@ -c $(addprefix $(DIR_SRC),$(_FILE))

@@ -85,6 +85,10 @@ Assuming the previous project structure and a C++ project, this makefile may loo
     FLAGS_STD_C       := c99
     FLAGS_STD_CPP     := c++11
     FLAGS_OTHER       := 
+    FLAGS_C           := 
+    FLAGS_CPP         := 
+    FLAGS_M           := -fobjc-arc
+    FLAGS_MM          := -fobjc-arc
     
     include makelib/Targets.mk 
 
@@ -173,6 +177,18 @@ The C++ language standard to use (`c++11`, `c++14`, etc).
 
 **FLAGS_OTHER**  
 Any other flags to pass to the compiler.
+
+**FLAGS_C**  
+Specific flags for the C compiler.
+
+**FLAGS_CPP**  
+Specific flags for the C++ compiler.
+
+**FLAGS_M**  
+Specific flags for the Objective-C compiler.
+
+**FLAGS_MM**  
+Specific flags for the Objective-C++ compiler.
 
 Demo / Example
 --------------
