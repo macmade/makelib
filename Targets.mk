@@ -232,5 +232,5 @@ $(DIR_BUILD_TEMP)%$(EXT_MM)$(EXT_O): _ARCH      = $(firstword $(subst /, ,$(subs
 $(DIR_BUILD_TEMP)%$(EXT_MM)$(EXT_O): _FILE      = $(subst $(_ARCH)/,,$*)$(EXT_MM)
 $(DIR_BUILD_TEMP)%$(EXT_MM)$(EXT_O): $$(shell mkdir -p $$(dir $$@)) $$(_FILE)
 	
-	@echo -e $(call PRINT_FILE,"Compiling Objective-C file",$(_ARCH),$(_FILE))
+	@echo -e $(call PRINT_FILE,"Compiling Objective-C++ file",$(_ARCH),$(_FILE))
 	@$(_CC) $(CC_FLAGS_$(_ARCH)) -std=$(FLAGS_STD_CPP) $(FLAGS_MM) -o $@ -c $(addprefix $(DIR_SRC),$(_FILE))
