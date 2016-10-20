@@ -58,37 +58,39 @@ Here's an example project structure:
 
 A makefile containing configuration values for makelib is required.  
 Assuming the previous project structure and a C++ project, this makefile may look like:
-
+    
+    BUILD_LEGACY_ARCHS  := 0
+    
     include makelib/Common.mk
     
-    PRODUCT           := MyProject
-    PRODUCT_LIB       := libMyProject
-    PRODUCT_DYLIB     := libMyProject
-    PRODUCT_FRAMEWORK := MyProject
-    PREFIX_DYLIB      := /usr/local/lib/
-    PREFIX_FRAMEWORK  := /Library/Frameworks/
-    DIR_INC           := MyProject/include/
-    DIR_SRC           := MyProject/source/
-    DIR_RES           := MyProject/
-    DIR_TESTS         := MyProject/tests
-    EXT_C             := .c
-    EXT_CPP           := .cpp
-    EXT_M             := .m
-    EXT_MM            := .mm
-    EXT_H             := .h
-    FILES             := $(call GET_CPP_FILES, $(DIR_SRC))
-    FILES_TESTS       := $(call GET_CPP_FILES, $(DIR_TESTS))
-    CC                := clang
-    LIBS              := 
-    FLAGS_OPTIM       := -Os
-    FLAGS_WARN        := -Wall -Werror
-    FLAGS_STD_C       := c99
-    FLAGS_STD_CPP     := c++11
-    FLAGS_OTHER       := 
-    FLAGS_C           := 
-    FLAGS_CPP         := 
-    FLAGS_M           := -fobjc-arc
-    FLAGS_MM          := -fobjc-arc
+    PRODUCT             := MyProject
+    PRODUCT_LIB         := libMyProject
+    PRODUCT_DYLIB       := libMyProject
+    PRODUCT_FRAMEWORK   := MyProject
+    PREFIX_DYLIB        := /usr/local/lib/
+    PREFIX_FRAMEWORK    := /Library/Frameworks/
+    DIR_INC             := MyProject/include/
+    DIR_SRC             := MyProject/source/
+    DIR_RES             := MyProject/
+    DIR_TESTS           := MyProject/tests
+    EXT_C               := .c
+    EXT_CPP             := .cpp
+    EXT_M               := .m
+    EXT_MM              := .mm
+    EXT_H               := .h
+    FILES               := $(call GET_CPP_FILES, $(DIR_SRC))
+    FILES_TESTS         := $(call GET_CPP_FILES, $(DIR_TESTS))
+    CC                  := clang
+    LIBS                := 
+    FLAGS_OPTIM         := -Os
+    FLAGS_WARN          := -Wall -Werror
+    FLAGS_STD_C         := c99
+    FLAGS_STD_CPP       := c++11
+    FLAGS_OTHER         := 
+    FLAGS_C             := 
+    FLAGS_CPP           := 
+    FLAGS_M             := -fobjc-arc
+    FLAGS_MM            := -fobjc-arc
     
     include makelib/Targets.mk 
 
@@ -189,6 +191,10 @@ Specific flags for the Objective-C compiler.
 
 **FLAGS_MM**  
 Specific flags for the Objective-C++ compiler.
+
+**BUILD_LEGACY_ARCHS**
+Builds legacy architectures (eg. i386 on macOS).  
+Note: define it before including `Common.mk`
 
 Demo / Example
 --------------

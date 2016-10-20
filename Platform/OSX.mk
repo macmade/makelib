@@ -36,9 +36,21 @@ EXT_FRAMEWORK   := .framework
 # Products and architectures to build
 #-------------------------------------------------------------------------------
 
+ifeq ($(BUILD_LEGACY_ARCHS),1)
+
 PRODUCTS = $(PRODUCT_LIB)$(EXT_LIB)|i386|x86_64|armv7|armv7s|arm64 \
            $(PRODUCT_DYLIB)$(EXT_DYLIB)|i386|x86_64                \
-           $(PRODUCT_FRAMEWORK)$(EXT_FRAMEWORK)|i386|x86_64        \
+           $(PRODUCT_FRAMEWORK)$(EXT_FRAMEWORK)|i386|x86_64
+
+else
+
+PRODUCTS = $(PRODUCT_LIB)$(EXT_LIB)|x86_64|armv7|armv7s|arm64 \
+           $(PRODUCT_DYLIB)$(EXT_DYLIB)|x86_64                \
+           $(PRODUCT_FRAMEWORK)$(EXT_FRAMEWORK)|x86_64
+
+endif
+
+
 
 #-------------------------------------------------------------------------------
 # Tools
