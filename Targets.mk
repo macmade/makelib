@@ -173,7 +173,7 @@ $(DIR_BUILD_PRODUCTS)%$(EXT_FRAMEWORK): $$(shell mkdir -p $$(dir $$@)) $(DIR_BUI
 	@ln -s Versions/A/$(notdir $(basename $@)) $@/$(notdir $(basename $@))
 	
 	@echo -e $(call PRINT,$(notdir $@),$(_ARCH),Copying the public header files)
-	@cp -rf $(DIR_INC)$(PRODUCT).h $@/Versions/A/Headers/
+	@cp -rf $(DIR_INC)$(PRODUCT)$(EXT_H) $@/Versions/A/Headers/
 	@cp -rf $(DIR_INC)$(PRODUCT)/* $@/Versions/A/Headers/
 	
 	@echo -e $(call PRINT,$(notdir $@),$(_ARCH),Copying the bundle resources)
