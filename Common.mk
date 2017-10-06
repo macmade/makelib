@@ -62,11 +62,11 @@ MAKE_VERSION_MAJOR  := $(shell echo $(MAKE_VERSION) | cut -f1 -d.)
 MAKE_4              := $(shell [ $(MAKE_VERSION_MAJOR) -ge 4 ] && echo true)
 
 # Check for the xctool utility
-XCTOOL              := $(shell which xctool)
+XCTOOL              := $(shell which xctool 2>/dev/null)
 HAS_XCTOOL          := $(shell if [ -f "$(XCTOOL)" ]; then echo true; else echo false; fi )
 
 # Check for the xcodebuild utility
-XCBUILD             := $(shell which xcodebuild)
+XCBUILD             := $(shell which xcodebuild 2>/dev/null)
 HAS_XCBUILD         := $(shell if [ -f "$(XCBUILD)" ]; then echo true; else echo false; fi )
 
 ifeq ($(HAS_XCBUILD),true)
