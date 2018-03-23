@@ -29,9 +29,12 @@
 # Build type
 #-------------------------------------------------------------------------------
 
-# Checks if we're on OS-X to determine the build type
-ifeq ($(findstring Darwin, $(shell uname)),)
+# Checks operating system to determine the build type
+OS_TYPE := $(shell uname)
+ifeq ($(OS_TYPE),Linux)
     BUILD_TYPE  := linux
+else ifeq ($(OS_TYPE),FreeBSD)
+    BUILD_TYPE  := bsd
 else
     BUILD_TYPE  := os-x
 endif
@@ -43,8 +46,13 @@ HOST_ARCH := $(shell uname -m)
 # Commands
 #-------------------------------------------------------------------------------
 
-MAKE    := make -s
-SHELL   := /bin/bash
+ifeq ($(BUILD_TYPE),bsd)
+	MAKE  := gmake -s
+	SHELL := /usr/local/bin/bash
+else
+	MAKE    := make -s
+	SHELL   := /bin/bash
+endif
 _CC      = $(CC) $(FLAGS_WARN) -fPIC -$(FLAGS_OPTIM) $(FLAGS_OTHER) -I$(DIR_INC)
 
 # C compiler - Debug mode
@@ -163,6 +171,8 @@ __DIR__ := $(dir $(lastword $(MAKEFILE_LIST)))
 
 ifeq ($(BUILD_TYPE),os-x)
     include $(__DIR__)/Platform/OSX.mk
+else ifeq ($(BUILD_TYPE),bsd)
+    include $(__DIR__)/Platform/FreeBSD.mk
 else
     include $(__DIR__)/Platform/Linux.mk
 endif
