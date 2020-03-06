@@ -27,7 +27,7 @@ Building on **OSX**, the following files will be produced:
 On **Linux**:
 
   - **Static library** (`.a`): host architecture
-  - **Dynamic library** (`.dylib`): host architecture
+  - **Dynamic library** (`.so`): host architecture
 
 Note that on OS X builds, ARM libraries are obviously targeted for iOS.
 
