@@ -85,9 +85,9 @@ CC_FLAGS_armv7s             := -arch armv7s -isysroot $(IOS_SDK_PATH)
 CC_FLAGS_arm64              := -arch arm64 -isysroot $(IOS_SDK_PATH)
 
 # Architecture specific flags for the C compiler when creating a dynamic library
-CC_FLAGS_DYLIB_i386         := -dynamiclib -install_name $(PREFIX_DYLIB)$(PRODUCT_DYLIB)$(EXT_DYLIB)
-CC_FLAGS_DYLIB_x86_64       := -dynamiclib -install_name $(PREFIX_DYLIB)$(PRODUCT_DYLIB)$(EXT_DYLIB)
+CC_FLAGS_DYLIB_i386         = -dynamiclib -install_name $(PREFIX_DYLIB)$(PRODUCT_DYLIB)$(EXT_DYLIB)
+CC_FLAGS_DYLIB_x86_64       = -dynamiclib -install_name $(PREFIX_DYLIB)$(PRODUCT_DYLIB)$(EXT_DYLIB)
 
 # Architecture specific flags for the C compiler when creating a Mac OS X framework
-CC_FLAGS_FRAMEWORK_i386     := -dynamiclib -install_name $(PREFIX_FRAMEWORK)$(PRODUCT_FRAMEWORK)$(EXT_FRAMEWORK) -single_module -compatibility_version 1 -current_version 1
-CC_FLAGS_FRAMEWORK_x86_64   := -dynamiclib -install_name $(PREFIX_FRAMEWORK)$(PRODUCT_FRAMEWORK)$(EXT_FRAMEWORK) -single_module -compatibility_version 1 -current_version 1
+CC_FLAGS_FRAMEWORK_i386     = -dynamiclib -install_name $(PREFIX_FRAMEWORK)$(PRODUCT_FRAMEWORK)$(EXT_FRAMEWORK) -single_module -compatibility_version 1 -current_version 1
+CC_FLAGS_FRAMEWORK_x86_64   = -dynamiclib -install_name $(PREFIX_FRAMEWORK)$(PRODUCT_FRAMEWORK)$(EXT_FRAMEWORK) -single_module -compatibility_version 1 -current_version 1

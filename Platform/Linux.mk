@@ -59,4 +59,4 @@ AR_FLAGS_$(HOST_ARCH)       := rcs
 CC_FLAGS_$(HOST_ARCH)       := 
 
 # Architecture specific flags for the C compiler when creating a dynamic library
-CC_FLAGS_DYLIB_$(HOST_ARCH) := -shared -Wl,-soname,$(PRODUCT_DYLIB)$(EXT_DYLIB)
+CC_FLAGS_DYLIB_$(HOST_ARCH) = -shared -Wl,-soname,$(PRODUCT_DYLIB)$(EXT_DYLIB)
